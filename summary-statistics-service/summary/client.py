@@ -7,10 +7,11 @@ import summary_api_pb2_grpc
 
 import pandas as pd
 import sys
-
+import os
 
 def run(port, uri):
-    with grpc.insecure_channel('localhost:{}'.format(port)) as channel:
+    host = os.getenv("HOST", "localhost")
+    with grpc.insecure_channel(f"{host}:{port}") as channel:
         stub = summary_api_pb2_grpc.DocumentSummarizerStub(channel)
         my_doc_source = summary_api_pb2.DocumentSource(http_uri=uri)
         html = pd.read_csv(my_doc_source.http_uri, index_col=0)

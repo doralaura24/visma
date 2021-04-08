@@ -37,5 +37,5 @@ def serve(port):
     server.wait_for_termination()
 
 if __name__ == '__main__':
-    port = sys.argv[1] if len(sys.argv) > 1 else 50051
+    port = sys.argv[1] if len(sys.argv) > 1 else 50052
     serve(port)

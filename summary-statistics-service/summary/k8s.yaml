@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: summary
+    labels:
+        app: summary
+spec:
+    replicas: 2
+    selector:
+        matchLabels:
+            app: summary
+    template:
+        metadata:
+            labels:
+                app: summary
+        spec:
+            containers:
+                - name: summary
+                  image: 742fa5d9c0f0
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: summary
+spec:
+    selector:
+        app: summary
+    ports:
+        - protocol: TCP
+          port: 50052
+          targetPort: 50052
